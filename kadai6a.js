@@ -10,7 +10,7 @@ const server = http.createServer((req, res) => {
   console.log(req.url);
 
   let url = req.url;
-  if (url === '/') url = '/index.html';
+  if (url.endsWith('/')) url = url.replace(/\/$/, '/index.html');
 
   const notFound = `<h1>404 Not Found</h1>${url}はありません。`;
 
