@@ -10,11 +10,14 @@ const server = http.createServer((req, res) => {
   console.log(req.url);
 
   let url = req.url;
-  if (url === '/') url = '/index.html';
+  // index.html 補完
+  // if (url === '/') url = '/index.html';
+  if (url.endsWith('/')) url = url.replace(/\/$/, '/index.html');
 
   const notFound = `<h1>404 Not Found</h1>${url}はありません。`;
 
   let contentType = 'text/html; charset=utf-8';
+  // CSS対応
   if (url.endsWith('.css')) contentType = 'text/css; charset=utf-8';
 
   fs.readFile(`${documentRoot}${url}`, 'utf-8', (err, data) => {
