@@ -27,10 +27,15 @@ const server = http.createServer((req, res) => {
   }
 
   fs.readFile(`${documentRoot}${url}`, encoding, (err, data) => {
-    res.statusCode = 200;
     res.setHeader('Content-Type', contentType);
-    if (err) res.end(notFound);
-    else res.end(data);
+    if (err) {
+      res.statusCode = 404;
+      res.end(notFound);
+    }
+    else {
+      res.statusCode = 200;
+      res.end(data);
+    }
   });
 });
 

@@ -19,10 +19,15 @@ const server = http.createServer((req, res) => {
   let contentType = 'text/html; charset=utf-8';
 
   fs.readFile(`${documentRoot}${url}`, 'utf-8', (err, data) => {
-    res.statusCode = 200;
     res.setHeader('Content-Type', contentType);
-    if (err) res.end(notFound);
-    else res.end(data);
+    if (err) {
+      res.statusCode = 404;
+      res.end(notFound);
+    }
+    else {
+      res.statusCode = 200;
+      res.end(data);
+    }
   });
 });
 
