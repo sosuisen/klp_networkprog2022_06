@@ -14,8 +14,10 @@ const server = http.createServer((req, res) => {
   const notFound = `<h1>404 Not Found</h1>${url}はありません。`;
 
   let contentType = 'text/html; charset=utf-8';
-  // CSS対応
+  // CSS対応。text/cssは大抵のブラウザではなくても動作してしまうが・・。
   if (url.endsWith('.css')) contentType = 'text/css; charset=utf-8';
+  // CSVダウンロード対応
+  else if (url.endsWith('.csv')) contentType = 'text/csv';
 
   fs.readFile(`${documentRoot}${url}`, 'utf-8', (err, data) => {
     res.setHeader('Content-Type', contentType);

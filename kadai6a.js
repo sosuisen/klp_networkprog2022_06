@@ -17,6 +17,7 @@ const server = http.createServer((req, res) => {
   let contentType = 'text/html; charset=utf-8';
   let encoding = 'utf-8';
   if (url.endsWith('.css')) contentType = 'text/css; charset=utf-8';
+  else if (url.endsWith('.csv')) contentType = 'text/csv';
   else if (url.endsWith('.jpg')) {
     // バイナリファイルの場合 null を設定
     // https://nodejs.org/api/fs.html#fsreadfilepath-options-callback
