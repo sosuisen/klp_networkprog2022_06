@@ -11,7 +11,9 @@ const server = http.createServer((req, res) => {
 
   let url = req.url;
   // index.html 補完
-  if (url.endsWith('/')) url = url.replace(/\/$/, '/index.html');
+  url = url.replace(/\/$/, '/index.html');
+  // 別解
+  // if(url.endsWith('/')) url += 'index.html';
 
   const notFound = `<h1>404 Not Found</h1>${url}はありません。`;
 

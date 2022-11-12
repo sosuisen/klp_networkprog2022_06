@@ -1,6 +1,6 @@
 const http = require('http');
 
-const host = 'localhost';
+const hostname = 'localhost';
 const port = 8080;
 
 const server = http.createServer((req, res) => {
@@ -21,7 +21,6 @@ const server = http.createServer((req, res) => {
   res.end(html);
 });
 
-server.listen({ host, port } , () => {
-  console.log(`Starting HTTP server at http://${host}:${port}/`)
+server.listen(port, hostname, () => {
+  console.log(`Starting HTTP server at http://${hostname}:${port}/`)
 });
-
